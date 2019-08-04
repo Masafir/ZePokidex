@@ -19,13 +19,11 @@ const Raw = ({name,index}) => (
             </div>
 );
 
-/* List.propTypes = {
+Raw.propTypes = {
     name : PropTypes.string.isRequired,
-    id : PropTypes.number.isRequired,
-    image : PropTypes.string.isRequired,
-    types : PropTypes.array.isRequired,
+    index : PropTypes.number.isRequired,
 };
- *//**
+ /**
  * Export
  */
 export default Raw;

@@ -6,11 +6,12 @@ import { createStore } from 'redux';
 /**
  * Local import
  */
-import reducer from 'src/store/reducer';
+import reducer from 'src/store/pokereducer';
 
 /**
  * Store
  */
+
 /* eslint-disable no-underscore-dangle */
 const store = createStore(
   reducer,
