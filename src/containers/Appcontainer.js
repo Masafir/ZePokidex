@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import App from 'src/components/App';
 
 // Action Creators
-import { getpokemons } from 'src/store/pokereducer';
+import { getpokemons } from 'src/store/reducer/pokereducer';
 
 const mapStateToProps = (state, ownProps) => ({
   pokemon: state.pokemon,

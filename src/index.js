@@ -11,7 +11,7 @@ import { Provider } from 'react-redux';
  */
 import App from 'src/containers/Appcontainer';
 
-import store from 'src/store';
+import store from 'src/store/reducer';
 
 /**
  * Render

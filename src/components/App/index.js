@@ -13,19 +13,31 @@ import List from '../List';
  */
 class App extends Component {
 
-  componentWillMount() {
+  constructor(props) {
+    super(props);
+    const { getPokemons } = props;
+    getPokemons();
+  }
+  /* componentDidMount() {
   const { getPokemons,pokemon } = this.props;
   getPokemons();
+  if(pokemon != 0)
+  {
+    this.setState({
+      ...this.state,
+      pokemons: [...pokemon]
+    })
   }
+  } */
 render() {
-  const { pokemon,charged } = this.props;
-  console.log('voici donc les pokemons après les requêtes',pokemon);
+  const { pokemon,charged,state } = this.props;
+  console.log('voici donc les pokemons après les requêtes',pokemon,state);
     return(
       <div id="app">
        Welcome to ze pokidex
         {
           charged ? <List pokeArray={pokemon} /> : <div>Loading</div>
-        } 
+        }
       </div>
     );
   }
