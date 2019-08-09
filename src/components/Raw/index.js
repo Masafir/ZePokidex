@@ -13,14 +13,15 @@ import './raw.scss';
  */
 // Le composant List qui représente une ligne du tableau list { name,id,image,types }
 
-const Raw = ({index}) => (
+const Raw = ({index,name}) => (
             <div className="poke-raw">
-                <p># {index}</p>
+                <p># {index + 1} {name} </p>
             </div>
 );
 
 Raw.propTypes = {
     index : PropTypes.number.isRequired,
+    name : PropTypes.string.isRequired,
 };
  /**
  * Export

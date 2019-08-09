@@ -11,10 +11,15 @@ import { GET_POKE,setpokemons,getPoke } from '../reducer/pokereducer';
 const pokeMiddleware = store => next => (action) => {
   switch (action.type) {
     case GET_POKE:
-        let pokarray = [];
+        const pokarray = [];
         console.log('on passe par le middleware');
-        getPoke(1,pokarray);
-        store.dispatch(setpokemons(pokarray));
+        getPoke().then(
+          (array) => {
+          console.log(array);
+          }
+        ).
+        
+        
       break;
 
     default:

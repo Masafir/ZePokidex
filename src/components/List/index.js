@@ -23,12 +23,12 @@ class List extends Component {
 
     render() {
         const { pokeArray } = this.props;
-        console.log('larray : ',pokeArray);
+        console.log('l\'array : ',pokeArray);
         return (
             <div className="poke-List">
                 <p>PINPON</p>
                 {
-                    pokeArray.length > 0 ? pokeArray.map((elem,id) => console.log('mierda',elem)) : <div> Loading</div>
+                    pokeArray.length > 0 ? pokeArray.map((elem,id) => <Raw index={id} key={`pokey${id}`} name={elem.name}/>) : <div> Loading</div>
                 }
             </div>
         );

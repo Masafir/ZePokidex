@@ -35,21 +35,27 @@ export const SET_POKE = 'SET_POKE';
 // solution 1: fonction permettant de chercher les informations *complètes* de tous les 151 pokemons en évitant le problème du for grâce à la récursivité 
 // problème : les données sont bien récupérées SAUF que le render ne s'effectue pas probablement un problème de prioritées , hypothèse pour une solution => Middleware
 
-export const getPoke = (int,array) => {
-  if(int > 0 && int <= 151)
-  {
-    axios.get(`https://pokeapi.co/api/v2/pokemon/${int}/`)
+export const getPoke = () => {
+  let pokarray = [];
+  let index = 1;
+  
+    const getAPokemon = async () => {
+      return axios.get(`https://pokeapi.co/api/v2/pokemon/${index}/`)
           .then(res => {
-            array.push(res.data);
-            getPoke(int+1,array);
+              pokarray.push(res.data);
+              if(index < 151) 
+              {
+                index++;
+                getAPokemon(index);
+              }
           })
           .catch(error => {
             console.log('une erreur est survenue ',error);
           })
-  }
-  else {
-    console.log(`at ${int} done or error`);
-  }
+      }
+  
+  console.log("l'array se finit donc ainsi ", pokarray);
+  return getAPokemon();
 };
 
 // solutions 2: fonction permettant de chercher les informations de bases de chaque pokémon ainsi que l'url pour aller chercher les informations complètes du pokémon
@@ -70,11 +76,11 @@ const getSimplePoke = async (start,limit,array) => {
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case SET_POKE:
-    return {
-      ...state,
-      charged: true,
-      pokemon: action.array
-    };
+      return {
+        ...state,
+        charged: true,
+        pokemon: [...action.array]
+    }
     default:
       return state;
   }

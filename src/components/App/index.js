@@ -15,8 +15,18 @@ class App extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      pokemons: [],
+    };
     const { getPokemons } = props;
     getPokemons();
+  }
+  componentWillReceiveProps() {
+    const { pokemon } = this.props;
+    this.setState({
+      pokemon: [...pokemon],
+    });
+    console.log("on choppe des props");
   }
   /* componentDidMount() {
   const { getPokemons,pokemon } = this.props;
@@ -32,6 +42,7 @@ class App extends Component {
 render() {
   const { pokemon,charged,state } = this.props;
   console.log('voici donc les pokemons après les requêtes',pokemon,state);
+  
     return(
       <div id="app">
        Welcome to ze pokidex
