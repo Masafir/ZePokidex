@@ -1,8 +1,17 @@
 @import 'src/styles/vars';
 
+body {
+  background-color: $background;
+}
 #app {
   width: 500px;
   margin: 3em auto;
   border: 5px double #ccc;
   padding: 1em;
+}
+p {
+  font-family: 'Press Start 2P', cursive;
+  color: $font-color;
+  font-size: 3.5em;
+  padding: 30em;
 }

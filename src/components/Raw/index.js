@@ -13,8 +13,9 @@ import './raw.scss';
  */
 // Le composant List qui représente une ligne du tableau list { name,id,image,types }
 
-const Raw = ({index,name}) => (
+const Raw = ({index,name,sprite}) => (
             <div className="poke-raw">
+                <img src={sprite.front_default}/>
                 <p># {index + 1} {name} </p>
             </div>
 );
@@ -22,6 +23,7 @@ const Raw = ({index,name}) => (
 Raw.propTypes = {
     index : PropTypes.number.isRequired,
     name : PropTypes.string.isRequired,
+    sprite: PropTypes.object.isRequired
 };
  /**
  * Export
