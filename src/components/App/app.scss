@@ -1,17 +1,17 @@
 @import 'src/styles/vars';
 
 body {
+  background-color: darkred;
+  font-family: 'Press Start 2P', cursive;
+}
+#poke-container {
   background-color: $background;
+  width: 90%;
+  margin: 1em auto;
+  padding: 2em;
 }
 #app {
-  width: 500px;
-  margin: 3em auto;
-  border: 5px double #ccc;
-  padding: 1em;
-}
-p {
-  font-family: 'Press Start 2P', cursive;
-  color: $font-color;
-  font-size: 3.5em;
-  padding: 30em;
+  text-align: center;
+  margin: 1em auto;
+  padding: 0.5em;
 }

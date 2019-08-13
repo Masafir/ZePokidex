@@ -3,6 +3,7 @@
  */ 
 import React,{Component} from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 /**
  *  Local import
@@ -15,8 +16,8 @@ import './raw.scss';
 
 const Raw = ({index,name,sprite}) => (
             <div className="poke-raw">
-                <img src={sprite.front_default}/>
-                <p># {index + 1} {name} </p>
+                <img className="poke-sprite" src={sprite.front_default}/>
+                <Link to={`pokemon/${index}/`} ><p># {index + 1} {name} </p></Link>
             </div>
 );
 

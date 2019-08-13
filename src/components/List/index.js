@@ -20,6 +20,7 @@ class List extends Component {
 
     render() {
         const { pokeArray } = this.props;
+        console.log('voici des props ',this.props);
         return (
             <div className="poke-List">
                 {

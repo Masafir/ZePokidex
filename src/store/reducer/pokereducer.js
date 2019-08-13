@@ -9,6 +9,7 @@ import axios from 'axios';
 const initialState = {
   pokemon: [],
   charged: false,
+  view: true,
 };
 
 /**
@@ -18,6 +19,7 @@ const initialState = {
 
 export const GET_POKE = 'GET_POKE';
 export const SET_POKE = 'SET_POKE';
+const CHANGE_VIEW = 'CHANGE_VIEW';
 
 /* for (let index = 1; index < 152; index++) {
         axios.get(`https://pokeapi.co/api/v2/pokemon/${index}/`)
@@ -91,6 +93,12 @@ const reducer = (state = initialState, action = {}) => {
         pokemon: action.array,
         charged: true,
     }
+    case CHANGE_VIEW: {
+      return {
+        ...state,
+        view: !state.view
+      }
+    }
     default:
       return state;
   }
@@ -108,6 +116,10 @@ export const setpokemons = (array) => ({
   type: SET_POKE,
   array,
 });
+
+export const changeview = () => ({
+  type: CHANGE_VIEW,
+})
 
 
 /**
