@@ -25,7 +25,7 @@ class Pokepage extends React.Component {
                 <div>weight : {pokemon.weight}</div>
             { pokemon.id !== 151 ? 
                 <div>
-                    { pokemon.id !== 1 ? <Link to={`/pokemon/${pokemon.id-1}`} replace><FaArrowAltCircleLeft /></Link> : ''}
+                    { pokemon.id !== 1 ? <Link to={`/pokemon/${pokemon.id-2}`} replace><FaArrowAltCircleLeft /></Link> : ''}
                     <Link to={`/pokemon/${pokemon.id}`} replace><FaArrowAltCircleRight /></Link>
                 </div> : 
                 <div>
