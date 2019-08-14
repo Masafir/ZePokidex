@@ -19,16 +19,25 @@ class Pokepage extends React.Component {
         const { pokemon } = this.props;
         return(
             <div className="poke-page">
-                <img src={pokemon.sprites.front_default}/>
-                <div>name : {pokemon.name}</div>
-                <div>index : {pokemon.id}</div>
-                <div>weight : {pokemon.weight}</div>
+                
+                <div id="poke-image">
+                    <img id="image-poke" src={pokemon.sprites.front_default}/>
+                </div>
+
+                <div id="poke-info">
+                    <div className="poke-line">name : {pokemon.name}</div>
+                    <div className="poke-line">index : {pokemon.id}</div>
+                    <div className="poke-line">weight : {pokemon.weight}</div>
+                    {
+                        pokemon.stats.map((elem,id) => <div key={`pokeystate${id}`}  className={'poke-statebar poke-line'} >{elem.stat.name} : {elem.base_stat}</div>)
+                    }
+                </div>
             { pokemon.id !== 151 ? 
-                <div>
+                <div className="poke-button">
                     { pokemon.id !== 1 ? <Link to={`/pokemon/${pokemon.id-2}`} replace><FaArrowAltCircleLeft /></Link> : ''}
                     <Link to={`/pokemon/${pokemon.id}`} replace><FaArrowAltCircleRight /></Link>
                 </div> : 
-                <div>
+                <div className="poke-button">
                     <Link to={`/pokemon/${pokemon.id-2}`} replace><FaArrowAltCircleLeft /></Link> 
                     <Link to='/'>Home</Link>
                 </div>
