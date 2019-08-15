@@ -2,8 +2,10 @@
  * NPM import
  */ 
 import React,{Component} from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from 'react-icons/fa';
+import styled from 'styled-components';
 /**
  *  Local import
  */
@@ -12,8 +14,32 @@ import './pokepage.scss';
  * Code
  */
 
-
 class Pokepage extends React.Component {
+    
+    Pokimage = styled.img`
+        width: 200px;
+        height: 200px;
+    `;
+
+    Pokeline = styled.div`
+        padding-bottom: 0.5em;
+    `;
+
+    Poketypes = styled.div`
+        display: flex;
+        padding: 0.5em 0.5em 0 0;
+    `;
+
+    Poketype = styled.div`
+        width: 40%;
+        padding: 0.65em;
+        margin: 0 auto;
+        border: 1px solid white;
+        border-radius: 30px;
+        font-size: 1em;
+        text-align: center;
+    `;
+
     render() {
         console.log('votre props ',this.props);
         const { pokemon } = this.props;
@@ -21,31 +47,43 @@ class Pokepage extends React.Component {
             <div className="poke-page">
                 
                 <div id="poke-image">
-                    <img id="image-poke" src={pokemon.sprites.front_default}/>
+                    <this.Pokimage id="image-poke" src={pokemon.sprites.front_default}/>
                 </div>
 
                 <div id="poke-info">
-                    <div className="poke-line">name : {pokemon.name}</div>
-                    <div className="poke-line">index : {pokemon.id}</div>
-                    <div className="poke-line">weight : {pokemon.weight}</div>
+                    <this.Pokeline>name : {pokemon.name}</this.Pokeline>
+                    <this.Pokeline>index : {pokemon.id}</this.Pokeline>
+                    <this.Pokeline>weight : {pokemon.weight}</this.Pokeline>
                     {
-                        pokemon.stats.map((elem,id) => <div key={`pokeystate${id}`}  className={'poke-statebar poke-line'} >{elem.stat.name} : {elem.base_stat}</div>)
+                        pokemon.stats.map((elem,id) => <this.Pokeline key={`pokeystate${id}`}  className='poke-statebar' >{elem.stat.name} : {elem.base_stat}</this.Pokeline>)
                     }
+                        <this.Pokeline>
+                            Types : 
+                            <this.Poketypes>
+                            {
+                                pokemon.types.map((types,id) => <this.Poketype key={`pokeytype${id}`} className={`type-${types.type.name}`}> {types.type.name} </this.Poketype>)
+                            }
+                            </this.Poketypes>
+                        </this.Pokeline>
                 </div>
             { pokemon.id !== 151 ? 
-                <div className="poke-button">
-                    { pokemon.id !== 1 ? <Link to={`/pokemon/${pokemon.id-2}`} replace><FaArrowAltCircleLeft /></Link> : ''}
-                    <Link to={`/pokemon/${pokemon.id}`} replace><FaArrowAltCircleRight /></Link>
+                <div className="poke-area-button">
+                    { pokemon.id !== 1 ? <Link className="poke-button" to={`/pokemon/${pokemon.id-2}`} replace><FaArrowAltCircleLeft /></Link> : ''}
+                    <Link className="poke-button" to={`/pokemon/${pokemon.id}`} replace><FaArrowAltCircleRight /></Link>
                 </div> : 
-                <div className="poke-button">
-                    <Link to={`/pokemon/${pokemon.id-2}`} replace><FaArrowAltCircleLeft /></Link> 
-                    <Link to='/'>Home</Link>
+                <div className="poke-area-button">
+                    <Link className="poke-button" to={`/pokemon/${pokemon.id-2}`} replace><FaArrowAltCircleLeft /></Link> 
+                    <Link className="poke-button" to='/'>Home</Link>
                 </div>
             }
             </div>
         );
     }
 }
+
+Pokepage.propTypes = {
+    pokemon: PropTypes.object.isRequired,
+};
 
  /**
  * Export
