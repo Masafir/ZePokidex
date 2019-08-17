@@ -9,6 +9,7 @@ import React,{Component} from 'react';
  */
 import './list.scss';
 import Raw from '../Raw';
+import Searchbar from '../Searchbar';
 /**
  * Code
  */
@@ -23,6 +24,7 @@ class List extends Component {
         console.log('voici des props ',this.props);
         return (
             <div className="poke-List">
+                <Searchbar />
                 {
                     pokeArray.length > 0 ? pokeArray.map((elem,id) => <Raw index={id} key={`pokey${id}`} name={elem.name} sprite={elem.sprites}/>) : <div> Loading</div>
                 }
