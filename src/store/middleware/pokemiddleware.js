@@ -1,6 +1,7 @@
 // Import : src
 
-import { GET_POKE,setpokemons,getPoke } from '../reducer/pokereducer';
+import { GET_POKE,GET_TYPES,setpokemons,getPoke,setTypes } from '../reducer/pokereducer';
+import Axios from 'axios';
 // === Types ===
 
 
@@ -19,6 +20,15 @@ const pokeMiddleware = store => next => (action) => {
           }
         );  
       break;
+      case GET_TYPES:
+        console.log('on passe par le middleware again ');
+        Axios.get('https://pokeapi.co/api/v2/type/').then(
+          (data) => {
+          console.log('le tableau dans le  middleware type',data.data.results);
+          store.dispatch(setTypes(data.data.results));
+          }
+        );  
+    break;
 
     default:
       break;

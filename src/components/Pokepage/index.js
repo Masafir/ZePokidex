@@ -13,6 +13,15 @@ import './pokepage.scss';
 /**
  * Code
  */
+export const Poketype = styled.div`
+width: 40%;
+padding: 0.65em;
+margin: 0 auto;
+border: 1px solid white;
+border-radius: 30px;
+font-size: 1em;
+text-align: center;
+`;
 
 class Pokepage extends React.Component {
     
@@ -30,18 +39,10 @@ class Pokepage extends React.Component {
         padding: 0.5em 0.5em 0 0;
     `;
 
-    Poketype = styled.div`
-        width: 40%;
-        padding: 0.65em;
-        margin: 0 auto;
-        border: 1px solid white;
-        border-radius: 30px;
-        font-size: 1em;
-        text-align: center;
-    `;
+    
 
     render() {
-        console.log('votre props ',this.props);
+        
         const { pokemon } = this.props;
         return(
             <div className="poke-page">
@@ -61,7 +62,7 @@ class Pokepage extends React.Component {
                             Types : 
                             <this.Poketypes>
                             {
-                                pokemon.types.map((types,id) => <this.Poketype key={`pokeytype${id}`} className={`type-${types.type.name}`}> {types.type.name} </this.Poketype>)
+                                pokemon.types.map((types,id) => <Poketype key={`pokeytype${id}`} className={`type-${types.type.name}`}> {types.type.name} </Poketype>)
                             }
                             </this.Poketypes>
                         </this.Pokeline>

@@ -10,8 +10,8 @@ import './app.scss';
 import List from '../List';
 import Nav from '../Nav';
 import NotFound from '../404';
-import PokePage from '../Pokepage';
 import Pokepage from '../Pokepage';
+import TypePage from '../../containers/Typepagecontainer';
 
 /**
  * Code
@@ -20,8 +20,9 @@ class App extends Component {
 
   constructor(props) {
     super(props);
-    const { getPokemons } = props;
+    const { getPokemons,getTypes } = props;
     getPokemons();
+    getTypes();
   }
 render() {
   const { pokemon,charged } = this.props;
@@ -35,6 +36,7 @@ render() {
             <Switch>
               <Route exact path="/" render={(props) => <List pokeArray={pokemon} {...props} />} />
               <Route exact path="/pokemon/:id" render={(props) => <Pokepage pokemon={pokemon[props.match.params.id]}{...props} />} />
+              <Route exact path='/search' component={TypePage} />
               <Route component={NotFound} />
             </Switch> 
             : <div>Loading</div>

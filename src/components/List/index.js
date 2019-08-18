@@ -18,10 +18,13 @@ import Searchbar from '../Searchbar';
 /* pokeArray.map((elem,id) => <Raw key={`id${id}`} name={elem.name} index={id} />) <Raw key={`id${id}`} name={elem.name} index={id} />*/
 class List extends Component {
 
-
+    componentWillMount() {
+        console.log('la on monte le composant liste');
+    }
+    
     render() {
         const { pokeArray } = this.props;
-        console.log('voici des props ',this.props);
+        
         return (
             <div className="poke-List">
                 <Searchbar />

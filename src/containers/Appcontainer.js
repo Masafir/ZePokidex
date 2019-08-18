@@ -10,6 +10,7 @@ import App from 'src/components/App';
 
 // Action Creators
 import { getpokemons } from 'src/store/reducer/pokereducer';
+import { getTypes } from 'src/store/reducer/pokereducer';
 
 const mapStateToProps = (state, ownProps) => ({
   pokemon: state.pokemon,
@@ -21,6 +22,9 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   getPokemons: () => {
     dispatch(getpokemons());
   },
+  getTypes: () => {
+    dispatch(getTypes());
+  }
 });
 
 // Container

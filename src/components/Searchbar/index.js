@@ -40,6 +40,9 @@ class Searchbar extends React.Component {
 
     state = {
         search: '',
+        bar: true,
+        type: false,
+        region: false,
     };
 
     handleInput = (evt) => {

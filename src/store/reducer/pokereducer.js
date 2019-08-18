@@ -8,6 +8,8 @@ import axios from 'axios';
  */
 const initialState = {
   pokemon: [],
+  pokeSearch: [], 
+  types: [],
   charged: false,
   view: true,
 };
@@ -15,10 +17,13 @@ const initialState = {
 /**
  * Types
  */
-
-
 export const GET_POKE = 'GET_POKE';
+export const RESET_SEARCH = 'RESET_SEARCH';
+export const SEARCH_TYPE = 'SEARCH_TYPE';
+export const SEARCH_NAME = 'SEARCH_NAME';
+export const GET_TYPES = 'GET_TYPES';
 export const SET_POKE = 'SET_POKE';
+export const SET_TYPES = 'SET_TYPES';
 const CHANGE_VIEW = 'CHANGE_VIEW';
 
 /* for (let index = 1; index < 152; index++) {
@@ -69,6 +74,8 @@ export const getPoke = () => {
   return getAPokemon();
 };
 
+
+
 // solutions 2: fonction permettant de chercher les informations de bases de chaque pokémon ainsi que l'url pour aller chercher les informations complètes du pokémon
 /* 
 const getSimplePoke = async (start,limit,array) => {
@@ -82,6 +89,16 @@ const getSimplePoke = async (start,limit,array) => {
 }
  */
 /**
+ * Fonction qui permet de filtrer les pokemons avec le type assigné
+ */
+const getpokebytype = (array,type) => {
+  let pokarray = [];
+  pokarray = array.map((pokemon) => pokemon.types.type === type ? pokemon : '');
+  console.log('votre tableau après filtration',pokarray);
+  return pokarray;
+};
+
+ /**
  * Reducer
  */
 const reducer = (state = initialState, action = {}) => {
@@ -92,11 +109,34 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         pokemon: action.array,
         charged: true,
+      }
+    case SET_TYPES: 
+    return {
+      ...state,
+      types: action.array,
     }
     case CHANGE_VIEW: {
       return {
         ...state,
         view: !state.view
+      }
+    }
+    case RESET_SEARCH: {
+      return {
+        ...state,
+        pokeSearch: []
+      }
+    }
+    case SEARCH_TYPE: {
+      return {
+        ...state,
+        pokesearch: getpokebytype(state.pokemon,action.poketype),
+      }
+    }
+    case SEARCH_NAME: {
+      return {
+        ...state,
+        pokeSearch: action.search,
       }
     }
     default:
@@ -111,12 +151,22 @@ const reducer = (state = initialState, action = {}) => {
 export const getpokemons = ()=> ({
   type: GET_POKE,
 });
+export const getTypes = ()=> ({
+  type: GET_TYPES,
+});
 // inscrire les pokemons dans le state
 export const setpokemons = (array) => ({
   type: SET_POKE,
   array,
 });
-
+export const getpokemonbytype = (poketype) => ({
+  type: SEARCH_TYPE,
+  poketype
+});
+export const setTypes = (array) => ({
+  type: SET_TYPES,
+  array,
+});
 export const changeview = () => ({
   type: CHANGE_VIEW,
 })
