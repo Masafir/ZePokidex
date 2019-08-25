@@ -14,9 +14,9 @@ import './pokepage.scss';
  * Code
  */
 export const Poketype = styled.div`
-width: 40%;
+width: 20em;
 padding: 0.65em;
-margin: 0 auto;
+margin: 0.5em auto;
 border: 1px solid white;
 border-radius: 30px;
 font-size: 1em;

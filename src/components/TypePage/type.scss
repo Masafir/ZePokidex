@@ -1,0 +1,34 @@
+@import'src/styles/vars';
+
+.search-display {
+    padding: 0.65em;
+    margin: 0.5em auto;
+}
+
+.active {
+    overflow: visible;
+}
+
+.type-toggle {
+    width: 100%;
+    background: $background;
+    border: 0;
+    text-align: left;
+    padding: 1.3em 1em;
+    margin: 0 auto 1em;
+    color:white;
+    font-family: 'Press Start 2P', cursive;
+}
+.type-toggle:hover {
+    background-color: darkred;
+  }
+  
+.type-display {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.hidden {
+    overflow: hidden;
+    display: none;
+}

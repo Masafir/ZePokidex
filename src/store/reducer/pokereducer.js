@@ -70,7 +70,6 @@ export const getPoke = () => {
           })
       }
   
-  console.log("l'array se finit donc ainsi ", pokarray);
   return getAPokemon();
 };
 
@@ -89,12 +88,29 @@ const getSimplePoke = async (start,limit,array) => {
 }
  */
 /**
- * Fonction qui permet de filtrer les pokemons avec le type assigné
+ * Fonction qui permet de filtrer les pokemons avec le type assigné  pokemon.type === type ? pokemon : 
  */
 const getpokebytype = (array,type) => {
   let pokarray = [];
-  pokarray = array.map((pokemon) => pokemon.types.type === type ? pokemon : '');
-  console.log('votre tableau après filtration',pokarray);
+  pokarray = array.filter(pokemon => {
+    let correspond = false;
+    pokemon.types.forEach(element => {
+  
+      if(element.type.name === type)
+      {
+        correspond = true;
+      }
+    });
+
+    if (correspond)
+    {
+      return true;
+    }
+
+    else {
+      return false;
+    }
+  }).map((pokemon) => pokemon);
   return pokarray;
 };
 
@@ -130,7 +146,7 @@ const reducer = (state = initialState, action = {}) => {
     case SEARCH_TYPE: {
       return {
         ...state,
-        pokesearch: getpokebytype(state.pokemon,action.poketype),
+        pokeSearch: getpokebytype(state.pokemon,action.poketype),
       }
     }
     case SEARCH_NAME: {
@@ -169,7 +185,10 @@ export const setTypes = (array) => ({
 });
 export const changeview = () => ({
   type: CHANGE_VIEW,
-})
+});
+export const resetActive = () => ({
+  type: RESET_SEARCH
+});
 
 
 /**

@@ -9,10 +9,11 @@ import { connect } from 'react-redux';
 import TypePage from 'src/components/TypePage';
 
 // Action Creators
-import { getpokemonbytype } from 'src/store/reducer/pokereducer';
+import { getpokemonbytype,resetActive } from 'src/store/reducer/pokereducer';
+
 
 const mapStateToProps = (state, ownProps) => ({
-  pokemon: state.pokemonSearch,
+  pokemon: state.pokeSearch,
   types: state.types
 });
 
@@ -20,6 +21,9 @@ const mapStateToProps = (state, ownProps) => ({
 const mapDispatchToProps = (dispatch, ownProps) => ({
   getPokemonbyType: (type) => {
     dispatch(getpokemonbytype(type));
+  },
+  reset: () => {
+    dispatch(resetActive());
   }
 });
 
