@@ -3,6 +3,7 @@
  */
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 /**
  * LOCAL
  */
@@ -10,13 +11,12 @@ import styled from 'styled-components';
 /**
  * CODE
  */
-class Searchbar extends React.Component {
-    SearchArea = styled.form`
+    const SearchArea = styled.form`
         display: flex;
         overflow: hidden;
         transition: max-height 0.3s ease;
     `;
-    SearchButton = styled.button`
+    const SearchButton = styled.button`
         padding: 1.5em;
         border: 1px solid white;
         color: #b22222;
@@ -26,7 +26,7 @@ class Searchbar extends React.Component {
         font-size: 0.5em;
         font-family: 'Press Start 2P', cursive;
     `;
-    SearchInput = styled.input`
+    const SearchInput = styled.input`
         width: 100%;
         margin: 1em auto;
         padding:  0.5em 1em;
@@ -37,40 +37,20 @@ class Searchbar extends React.Component {
         border-radius: 10px;
         font-family: 'Press Start 2P', cursive;
     `;
-
-    state = {
-        search: '',
-        bar: true,
-        type: false,
-        region: false,
-    };
-
-    handleInput = (evt) => {
-        const { value,name } = evt.target;
-        console.log(`name : ${name} `,value);
-        this.setState({
-            ...this.state,
-            [name] : value,
-        });
-    }
-
-    handleSubmit = (evt) => {
-        evt.preventDefault();
-        console.log(this.state.search);
-    }
-
-    render() {
-        return(
-        <this.SearchArea onSubmit={this.handleSubmit}>
-                <this.SearchInput name='search' value={this.state.search} onChange={this.handleInput} placeholder=' Search a pokemon ... ' />
-                <this.SearchButton>
+const Searchbar = ({ submit,input,value }) => (
+        <SearchArea onSubmit={submit}>
+                <SearchInput name='search' value={value} onChange={input} placeholder=' Search a pokemon ... ' />
+                <SearchButton>
                     Search
-                </this.SearchButton>
-        </this.SearchArea>
+                </SearchButton>
+        </SearchArea>
 
         );
-    }
-}
+Searchbar.propTypes = {
+    value: PropTypes.string.isRequired,
+    submit: PropTypes.func.isRequired,
+    input: PropTypes.func.isRequired,
+};
 /**
  * EXPORT
  */

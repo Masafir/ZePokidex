@@ -3,6 +3,7 @@
  */
 import React,{Component} from 'react';
 import { Switch,Route } from 'react-router-dom';
+import PropTypes from 'prop-types';
 /**
  * Local import
  */
@@ -11,7 +12,7 @@ import List from '../List';
 import Nav from '../Nav';
 import NotFound from '../404';
 import Pokepage from '../Pokepage';
-import TypePage from '../../containers/Typepagecontainer';
+import SearchPage from '../../containers/Searchpagecontainer';
 
 /**
  * Code
@@ -36,7 +37,7 @@ render() {
             <Switch>
               <Route exact path="/" render={(props) => <List pokeArray={pokemon} {...props} />} />
               <Route exact path="/pokemon/:id" render={(props) => <Pokepage pokemon={pokemon[props.match.params.id]}{...props} />} />
-              <Route exact path='/search' component={TypePage} />
+              <Route exact path='/search' component={SearchPage} />
               <Route component={NotFound} />
             </Switch> 
             : <div>Loading</div>
@@ -46,7 +47,12 @@ render() {
     );
   }
 }
-
+App.propTypes = {
+  pokemon: PropTypes.array.isRequired,
+  charged: PropTypes.bool.isRequired,
+  getPokemons: PropTypes.func.isRequired,
+  getTypes: PropTypes.func.isRequired,
+};
 /**
  * Export
  */

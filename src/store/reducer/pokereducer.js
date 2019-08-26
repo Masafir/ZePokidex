@@ -90,7 +90,7 @@ const getSimplePoke = async (start,limit,array) => {
 /**
  * Fonction qui permet de filtrer les pokemons avec le type assigné  pokemon.type === type ? pokemon : 
  */
-const getpokebytype = (array,type) => {
+const getPokeByType = (array,type) => {
   let pokarray = [];
   pokarray = array.filter(pokemon => {
     let correspond = false;
@@ -114,6 +114,26 @@ const getpokebytype = (array,type) => {
   return pokarray;
 };
 
+const getPokeByName = (array,pokename) => {
+  let pokarray = [];
+  //passer la recherche en minuscule pour aller chercher les pokemons malgré la case
+  pokename = pokename.toLowerCase();
+  // Le filter va "filtrer" les pokemons en testant chaque lettre du nom pokemon avec les lettres de la recherche
+  pokarray = array.filter((pokemon,id) => {
+    let correspond = true;
+    const { name } = pokemon;
+  //le test pour chaque lettre
+    [...pokename].forEach((value,index) => {
+      if( value !== name[index] )
+      {
+        correspond = false;
+      }
+    });
+    return correspond
+  }).map(element => element);
+  
+  return pokarray;
+}
  /**
  * Reducer
  */
@@ -146,13 +166,14 @@ const reducer = (state = initialState, action = {}) => {
     case SEARCH_TYPE: {
       return {
         ...state,
-        pokeSearch: getpokebytype(state.pokemon,action.poketype),
+        pokeSearch: getPokeByType(state.pokemon,action.poketype),
       }
     }
     case SEARCH_NAME: {
+      console.log('votre action ici', action);
       return {
         ...state,
-        pokeSearch: action.search,
+        pokeSearch: getPokeByName(state.pokemon,action.pokename),
       }
     }
     default:
@@ -178,6 +199,10 @@ export const setpokemons = (array) => ({
 export const getpokemonbytype = (poketype) => ({
   type: SEARCH_TYPE,
   poketype
+});
+export const getpokemonbyname = (pokename) => ({
+  type: SEARCH_NAME,
+  pokename
 });
 export const setTypes = (array) => ({
   type: SET_TYPES,
